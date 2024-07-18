@@ -5,7 +5,7 @@ const TodoList = () => {
 
     const {todoList, setTodoList, loginMember} = useContext(TodoListContext);
 
-    const {inputTodo, setInputTodo} = useState('');
+    const [inputTodo, setInputTodo] = useState('');
 
     let keyIndex = 0;
 
@@ -65,7 +65,7 @@ const TodoList = () => {
         console.log("index가 뭘까요 ?", index);
 
         fetch("/todo", {
-            method: "put",
+            method: "put", //controller putMapping 작성한다했기에 put
             // headers에서 
             // Content-Type는 소비자가 Controller로 값을 전달할 때 
             // 이 값이 이미지, 동영상, 글자 등 어떤 파일인지 전달하는 공간
@@ -85,6 +85,25 @@ const TodoList = () => {
                 */
             })
         })
+        .then(response => response.text())
+        .then(result => {
+            // 응답에 대한 결과가 없다면 업데이트 실패했습니다. 띄워주기
+            if(result === '0') {
+                alert("할 일 수정에 실패했습니다.");
+                return;
+            }
+            // 수정 성공 시 todoList 값을 변경해서 새로고침
+
+            // 기존할일목록(todoList) 복사해서 새로 추가된 할일 을 더한다음
+            // 새로운 할 일로 업데이트
+            const newTodoList = [...todoList];
+
+            // index번호의 태그 값을 O나 X로 변경
+            newTodoList[index].isDone = newTodoList[index].isDone ==='O'?'X':"O";
+
+            setTodoList(newTodoList);
+        })
+        .catch(e => console.log(e));
 
      }
 
