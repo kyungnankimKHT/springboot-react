@@ -57,7 +57,34 @@ const TodoList = () => {
         );
      }
 
-     const 할일수정버튼 = () => {
+     // O,X 업데이트 할 일을 완료하면 X버튼이 표시, 할 일을 완료하지 못하면 O버튼이 표시
+     //             할 일을 처음부터 끝까지 모두 완료 미완료 처리하는 것이 아니라
+     //             특정 할 일과 그 할 일의 번호를 받아 특정 할 일만 수정
+     const 할일수정버튼 = (todo, index) => {
+        console.log("todo가 뭐지 ? ", todo);
+        console.log("index가 뭘까요 ?", index);
+
+        fetch("/todo", {
+            method: "put",
+            // headers에서 
+            // Content-Type는 소비자가 Controller로 값을 전달할 때 
+            // 이 값이 이미지, 동영상, 글자 등 어떤 파일인지 전달하는 공간
+            headers:{'Content-Type' : 'application/json'},
+            // JSON으로 된 파일을 글자로 변경해서 글자 취급으로 사용
+            body: JSON.stringify({
+                todoNo: todo.todoNo,
+                isDone : todo.isDone === 'O' ? 'X' : 'O' 
+                /* 
+                만약에  
+                삼항연산자   조건이    ? true일 때 실행할 구문 : 조건이 false일 때 실행할 구문 
+                            todo.isDone === 'O'  ? 'X' 
+                할일 완료 여부에 O로 표시되어 있으면  X로 글자 변경
+                            todo.isDone === 'O'  :  todo.isDone이 X라면 이라는 표기
+                            todo.isDone === 'O'  : 'O' 
+                할일 완료 여부에 로 표시되어 있으면   O로 글자 변경
+                */
+            })
+        })
 
      }
 
