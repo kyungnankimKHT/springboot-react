@@ -107,7 +107,7 @@ const TodoList = () => {
 
                 <ul>
                     {/*배열.map : 기존 배열을 이용해서 새로운 배열 만들기 */}
-                    {TodoList.map((todo, index) => (
+                    {todoList.map((todo, index) => (
                         <li key={keyIndex++}>
                             <div>
                                 <span className={ todo.isDone === 'X' ? 'todo-compleate' : ''}>

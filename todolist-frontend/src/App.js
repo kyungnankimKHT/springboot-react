@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import TodoListContext from './components/TodoListContext';
-import SignupContainer from './components/Signup'
-import LoginComponent from './components/Login';
-import TodoListComponent from './components/TodoList';
+import Signup from './components/Signup'
+import Login from './components/Login';
+import TodoList from './components/TodoList';
 
 /* App 컴포넌트 (최상위 컴포넌트) */
 function App() {
@@ -29,14 +29,14 @@ function App() {
         {/* signupView가 true인 경우에만 화면에 출력 */}
         
         {/* 조건식 && (true인 경우 실행) */}
-        {  signupView === true && (<SignupContainer/>) }
+        {  signupView === true && (<Signup/>) }
       </div>
       <h1>Todo List</h1>
       {/* 로그인 컴포넌트 */}
-      <LoginComponent />
+      <Login />
       <hr/>
       {/* 로그인 되었을 때 로그인한 회원의 TodoList 출력 */}
-      { loginMember && (<TodoListComponent/>) } 
+      { loginMember && (<TodoList/>) } 
     </TodoListContext.Provider>
   );
 }
