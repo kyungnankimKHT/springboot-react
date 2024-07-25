@@ -16,6 +16,7 @@ public class UserServiceImpl  implements UserService{
 	
 	@Override
 	public List<User> findAll(){
+		//관리자로 로그인했을 때 유저보이게하기
 		return userMapper.findAll();
 	}
 }
