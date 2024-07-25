@@ -1,8 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import UserTable from './component/UserTable';
+import UserForm from './component/UserForm';
 // select insert component 추가 작성
 function App() {
   const [users, setUsers] = useState([]); //유저 목록이 담길 빈 배열생성
@@ -53,9 +53,19 @@ function App() {
     const res = await axios.get('/users');
     setUsers(res.data);
   };
+
+  // async await 사용해서 유저 추가하기 addUser에서 가져온 user 한 명을 넣어주기
+  const addUser = async (user) => {
+    const res = await axios.post('/users', user); // controller postMapping으로 전달하는 유저 정보
+    //  ...users 기존에 작성한 유저목록에 유저 데이터 하나를 추가
+    setUsers([...users], res.data);
+  }
+
+
   return (
     <div className="App">
       <h1>유저 관리하기</h1>
+      <UserForm addUser={addUser} />
       <UserTable users={users} />
     </div>
   );

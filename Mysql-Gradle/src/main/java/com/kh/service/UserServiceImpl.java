@@ -19,6 +19,11 @@ public class UserServiceImpl  implements UserService{
 		//관리자로 로그인했을 때 유저보이게하기
 		return userMapper.findAll();
 	}
+	
+	@Override
+	public void insertUser(User user) {
+		userMapper.insertUser(user);
+	}
 }
 
 
