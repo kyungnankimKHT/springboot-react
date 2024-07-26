@@ -12,9 +12,19 @@ function App() {
   // 특정 변수명이 존재한다면 특정변수명에 변화가 있을 때마다 기능이 실행
   // useEffect(() => {기능},[특정변수명]);
 
+
+  /********** useEffect 최초 1회 만 실행 ***********/
+  //useEffect(() => {
+  //  모든유저보기(); //홈페이지 들어오면 최초 1회로 유저들이 보이고, 
+  //},    []    ); // [] 비어있기 때문에 홈페이지가 보일 때 딱 한 번만 실행
+
+
+  /********** useEffect users를 넣어서 유저목록에 변화가 발생하면 모두 불러오기 기능을 다시 실행 ***********/
   useEffect(() => {
-    모든유저보기(); //홈페이지 들어오면 최초 1회로 유저들이 보이고, 
-  },    []    ); // [] 비어있기 때문에 홈페이지가 보일 때 딱 한 번만 실행
+    모든유저보기(); // users = 유저목록에 유저가 추가되거나 삭제되는 일이 발생하면 모든 유저 다시보기가 됨
+  },    [/*users*/]    ); // [] users가 들어있기 때문에 유저목록에 유저가 추가되거나 삭제될 경우 유저목록 새로고침
+
+
 /*
   const 모든유저보기 = () => {
     // axios를 이용해서 모든 유저를 보겠다.
@@ -47,13 +57,13 @@ function App() {
     setUsers(응답.data); // 가져오는데 성공하면 가져온 데이터로 유저목록을 만들어주는 것
   }
     */
-
+  /*********** 모든 유저 보는 기능 ***********/
   // async await 버전 사용
   const 모든유저보기 = async () => {
     const res = await axios.get('/users');
     setUsers(res.data);
   };
-
+  /*********** 유저 추가 버튼 ***********/
   // async await 사용해서 유저 추가하기 addUser에서 가져온 user 한 명을 넣어주기
   const addUser = async (user) => {
     const res = await axios.post('/users', user); // controller postMapping으로 전달하는 유저 정보
@@ -61,12 +71,43 @@ function App() {
     setUsers([...users], res.data);
   }
 
+  /*********** 유저 삭제 버튼 ***********/
+  const deleteUser = async (id) => {
+    /**
+     "" ''  = 모두 글자 취급
+     ``     = 글자 안에 특정 값을 변수명으로 취급해야할 때 사용
+              `` 안에서 변수명을 처리해야하는 값은 ${} 사용한다음
+              ${융통성있게 변경되어야하는 변수명} 작성
+    예시
+      ""  ''
+      http://localhost:3000/users?id=${id}
+      ``
+      http://localhost:3000/users?id=3
+     */
+    await axios.delete(`/users?id=${id}`);
+    /*
+    setUsers(users.filter(user => user.id != id));
+    users = 현재 저장되어 있는 유저들 리스트
+    user.id != id =  user.id  유저 아이디와  id(삭제하고자 하는 유저 아이디)가 일치하지 않으면
+    setUsers(새로운 유저목록)에 포함시키고
+    id(삭제하고자 하는 유저 아이디)와 user.id가 일치하는 아이디는 삭제한다음
+
+    setUsers(새로운 유저목록)을 완성 시킨다
+
+    filter 유저목록 걸러내기 기능
+    filter = 조건
+    */
+    setUsers(users.filter(user => user.id != id));
+  }
+
+
+
 
   return (
     <div className="App">
       <h1>유저 관리하기</h1>
       <UserForm addUser={addUser} />
-      <UserTable users={users} />
+      <UserTable users={users} deleteUser={deleteUser} />
     </div>
   );
 }
