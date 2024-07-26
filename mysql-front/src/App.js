@@ -3,9 +3,18 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import UserTable from './component/UserTable';
 import UserForm from './component/UserForm';
+import EditUserForm from './component/EditUserForm';
 // select insert component 추가 작성
 function App() {
   const [users, setUsers] = useState([]); //유저 목록이 담길 빈 배열생성
+
+  // 수정한 유저 정보를 잠시 담고 있을 변수 생성
+  const [userToEdit, setUserToEdit] = useState(null);
+
+
+
+
+
   // useEffect는 버튼이나 특정값을 클릭하지 않아도 자동실행 딱 1번만 실행되느냐, 주기적으로 실행하느냐
   // App.js가 실행되면 적용할 효과 만약 특정변수명이 없다면 기능이 최초 1회만 실행하고 실행되지 않음
   // useEffect(() => {기능},[         ]);
@@ -114,6 +123,23 @@ function App() {
     */
   }
 
+/*********  유저 수정 버튼  *********/
+const updateUser = async (user) => {
+  await axios.put('/users', user); //putmapping /users로 주소값이 설정된 수정하는 주소 연결
+  setUsers(users.map(u => (u.id === user.id ? user : u)));
+  // 수정한 유저의 id값이 일치하는지 확인하고, id값이 일치하지 않다면 기존에 있던 유저 정보로 수정하지 않고 전달
+}
+/*********  유저 수정을 완료하면 유저 목록에 수정된 유저를 전달  *********/
+const editUser = (user) => {
+  setUserToEdit(user);
+}
+
+
+/** 수정하기 버튼 있다면 수정 취소하기 확인  */
+
+const cancelEdit = () => {
+  setUserToEdit(null); //유저정보 수정 취소 할 때 null 빈 값으로 변경하는 트릭
+}
 
 
 
@@ -121,7 +147,14 @@ function App() {
     <div className="App">
       <h1>유저 관리하기</h1>
       <UserForm addUser={addUser} />
-      <UserTable users={users} deleteUser={deleteUser} />
+      <UserTable users={users} deleteUser={deleteUser}  editUser={editUser} />
+      {userToEdit && (
+        <EditUserForm
+          userToEdit={userToEdit}
+          updateUser={updateUser}
+          cancelEdit={cancelEdit}
+          />
+      )}
     </div>
   );
 }
