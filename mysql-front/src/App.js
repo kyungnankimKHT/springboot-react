@@ -85,6 +85,21 @@ function App() {
       http://localhost:3000/users?id=3
      */
     await axios.delete(`/users?id=${id}`);
+    /**
+     * 자바 컨트롤러에서 @DeleteMapping("/{id}") 매개변수 = 파라미터에 (@PathVariable int id) 작성
+     * 리액트  axios에서 id=${id} 이다.  
+     * await axios.delete(`/users?id=${id}`); 
+     * 나중에 주소값에 id 대신 삭제할 번호가 들어갈 수 있도록 설정
+     * 
+     * 자바 컨트롤러에서 @DeleteMapping() 에 특정 id값을 설정하지 않을 경우
+     * 매개변수 = 파라미터에 (@RequestParam(value="id") int id) //(value="id") = 프론트엔드에서 가져온 id값
+     * params: {id}
+     * await axios.delete(`/users`,{params: {id} });
+
+     */
+
+
+    setUsers(users.filter(user => user.id != id));
     /*
     setUsers(users.filter(user => user.id != id));
     users = 현재 저장되어 있는 유저들 리스트
@@ -97,7 +112,6 @@ function App() {
     filter 유저목록 걸러내기 기능
     filter = 조건
     */
-    setUsers(users.filter(user => user.id != id));
   }
 
 
