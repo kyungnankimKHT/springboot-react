@@ -3,8 +3,8 @@ import React from "react";
 const Login = () => {
     return (
         <>
-        <a href="http://localhost:9010/api/naverLogin">
-            <img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" />
+        <a href="http://localhost:9010/naverLogin">
+           네이버로 로그인하기
         </a>
         </>
     )

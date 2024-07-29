@@ -3,7 +3,7 @@ var app = express();
 var client_id = 'sa9Qr1Zb8xInzwvyHgDi'; /* 네이버 개발자 센터 클라이언트 아이디로 교체 */
 var client_secret = 'W9zVl9LMhO'; /* 네이버 개발자 센터 시크릿 키로 교체 */
 var state = "RANDOM_STATE";
-var redirectURI = encodeURI("http://localhost:3000/naverLogin"); /* 네이버 개발자 센터 콜백URL 교체 */
+var redirectURI = encodeURI("http://localhost:9010/naverLogin"); /* 네이버 개발자 센터 콜백URL 교체 */
 var api_url = "";
 //app.get('/naverlogin', function (req, res) {
 // 나중에 로그인한 결과를 받는 공간

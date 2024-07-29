@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class OAuthController {
 	/*
 	 @Value = 환경설정 appication.properties나 config.properties에 작성한 
@@ -37,9 +37,9 @@ public class OAuthController {
 	   res.end("<a href='"+ api_url + "'><img height='50' src='http://static.nid.naver.com/oauth/small_g_in.PNG'/></a>");
 	 }); 
 	 * */
-	@GetMapping("/naverLogin")
+	@GetMapping("/naverLogin") //localhost:9010/api/naverLogin
 	public String naverLogin() {
-		String api_url = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=' + client_id + '&redirect_uri=' + redirectURI + '&state=' + state";
+		String api_url = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" + clientId + "&redirect_uri=" + redirectUri + "&state=" + state;
 		return "<a href='"+ api_url + "'><img height='50' src='http://static.nid.naver.com/oauth/small_g_in.PNG'/></a>";
 	}
 	/*
