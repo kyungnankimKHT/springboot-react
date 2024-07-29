@@ -31,7 +31,8 @@ const UserForm = ({ addUser }) => {
             required
           />
         </div>
-        <button type="submit">유저 추가하기</button>
+        <button type="submit">유저 추가하기</button><br/><br/><br/>
+        <button type="submit">네이버 로그인을 통한 유저 추가하기</button>
       </form>
     </div>
   );
