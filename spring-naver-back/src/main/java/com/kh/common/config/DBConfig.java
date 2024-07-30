@@ -33,12 +33,6 @@ public class DBConfig {
 	@ConfigurationProperties(prefix = "spring.datasource.hikari")
 	public HikariConfig hikariConfig() {
 		HikariConfig config = new HikariConfig();
-		/*
-		config.setJdbcUrl("jdbc:mysql://localhost:3306/KH_WORKBOOK");
-		config.setUsername("root");
-		config.setPassword("kh1234");
-		config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		*/
 		return new HikariConfig(); // hikari DataBase 연결을 도와주는 라이브러리 
 	}
 	
