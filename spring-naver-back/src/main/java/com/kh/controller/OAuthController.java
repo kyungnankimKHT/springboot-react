@@ -26,6 +26,7 @@ import jakarta.servlet.http.HttpSession;
  * @RequestMapping("/api")를 제거함 
  * */
 @RestController
+@RequestMapping("/naver")// NaverRegist 와 주소 충돌을 방지하기 위해 임의로 작성
 public class OAuthController {
 
 	@Value("${naver.client-id}")
@@ -40,6 +41,8 @@ public class OAuthController {
 	@Value("${naver.state}") 
 	private String state;	
 
+	
+	private String redirectUris; 
 	@GetMapping("/naverLogin") //http://localhost:9010/naverLogin
 	public String naverLogin() {
 		String api_url = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=" + clientId + "&redirect_uri=" + redirectUri + "&state=" + state;
