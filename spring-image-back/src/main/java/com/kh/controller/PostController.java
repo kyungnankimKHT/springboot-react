@@ -19,7 +19,7 @@ public class PostController {
 	
 	// 이미지 저장하기 위한 PostMapping
 	
-	@PostMapping("/gallery/upload")
+	@PostMapping("/gellery/upload")
 	// ResponseEntity = 데이터가 무사히 전달되고 있는지 체크
 	public ResponseEntity<String> uploadImages(@RequestParam("files") MultipartFile[] files,
 												@RequestParam("title") String title,

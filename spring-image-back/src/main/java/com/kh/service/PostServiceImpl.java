@@ -46,7 +46,7 @@ public class PostServiceImpl implements PostService{
 		// !ulodaDirFile.exists() = 폴더가 존재하지 않는다.
 		if(!ulodaDirFile.exists()) {
 			System.out.println("폴더가 존재하지 않아 폴더를 생성합니다.");
-			if (ulodaDirFile.mkdirs()) {
+			if (!ulodaDirFile.mkdirs()) {
 				throw new RuntimeException("폴더 생성 실패하였습니다.");
 				//mkdir = 폴더 1개 mkdirs = 하위폴더 모두 생성
 			}
