@@ -4,12 +4,11 @@ import java.time.LocalDateTime;
 
 import lombok.*;
 
-
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
+@NoArgsConstructor //기본생성자
+@AllArgsConstructor//필수생성자
+@ToString		// DB에서 값이 제대로 넘어왔는지 체크용
 public class UserProfile {
 	private    int userId; 		     // user_id 		  INT AUTO_INCREMENT PRIMARY KEY,
 	private String username; 	     // username 		  VARCHAR(255) NOT NULL,
