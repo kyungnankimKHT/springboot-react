@@ -1,10 +1,11 @@
 import './App.css';
-import Login from './component/Login';
+import NaverApi from './component/NaverApi';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import UserInfo from './component/UserInfo';
+import NaverSignup from './component/NaverSignup';
 import Header from './component/layout/Header';
 import { useEffect, useState } from 'react';
 import AuthContext from './component/layout/AuthContext';
+import Login from './component/Login';
 // html파일이 1개 밖에 없는 React에서는 
 // Router를 이용해서 각 js파일의 경로를 설정
 // BrowserRouter = Router : 웹에 전체적인 경로음
@@ -36,10 +37,10 @@ function App() {
     <Router>
       <Header />
         <Routes>
-          <Route path='/' element={<Login     />  } />
-          <Route path='/userinfo' element= { <UserInfo />} />
+          <Route path='/login' element={<Login     />  } />
+          <Route path='/api/naver' element={<NaverApi     />  } />
+          <Route path='/signup/naver' element= { <NaverSignup />} />
         </Routes>
-
     </Router>
     </AuthContext.Provider>
   );
