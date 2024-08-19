@@ -25,6 +25,7 @@ const AirPollutionData = () => {
 
           return {
             stationName:item.getElementsByTagName("stationName")[0]?.textContent,
+            dataTime: yearMonth,
             so2Grade: item.getElementsByTagName("so2Grade")[0]?.textContent,
             coFlag: item.getElementsByTagName("coFlag")[0]?.textContent,
             khaiValue: item.getElementsByTagName("khaiValue")[0]?.textContent,
@@ -58,7 +59,13 @@ const AirPollutionData = () => {
         {data.map((item, index) => (
           <div key={index} className="card">
             <h2 className="stationName">{item.stationName}</h2>
-
+            <p><strong>년/월</strong>{item.dataTime}</p>
+            <p><strong>SO2 등급 : </strong>{item.so2Grade}</p>
+            <p><strong>CO 상태 : </strong>{item.coFlag}</p>
+            <p><strong>종합대기질지수 : </strong>{item.khaiValue}</p>
+            <p><strong>PM10 농도 : </strong>{item.pm10Value}</p>
+            <p><strong>NO0 농도 : </strong>{item.no2Value}</p>
+            <p><strong>O3 농도 : </strong>{item.o3Value}</p>
           </div>
         ))}
       </div>
