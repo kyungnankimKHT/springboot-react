@@ -15,7 +15,13 @@ useEffect(() => {
     return(
         <div className='chicken-container'>
             <h1>치킨 메뉴</h1>
-
+            <ul>
+            {chickens.map(chicken => (
+                <li key={chicken.id}>
+                    {chicken.name} = {chicken.description} = ₩{chicken.price}원
+                </li>
+            ))}
+            </ul>
         </div>
     )
 }
