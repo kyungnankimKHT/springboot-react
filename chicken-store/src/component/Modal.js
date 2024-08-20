@@ -1,4 +1,4 @@
-
+import '../css/Modal.css';
 //버튼을 열거나 닫을 때 동작
 const Modal = ({isOpen, onClose, children}) => {
    // isOpen 이 false 이면 아래 return() 을 보지 않고
