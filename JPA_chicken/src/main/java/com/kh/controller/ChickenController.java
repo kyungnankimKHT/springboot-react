@@ -25,14 +25,14 @@ public class ChickenController {
 		return chickenService.getAllChickens();
 	}
 	
-	@GetMapping("{id}")
-	public Chicken getChickenById(@PathVariable Integer id) {
-		return chickenService.findById(id);
-	}
-	
 	@PostMapping
 	public Chicken saveChicken(@RequestBody Chicken chicken) {
 		return chickenService.createChicken(chicken);
+	}
+	
+	@GetMapping("{id}")
+	public Chicken getChickenById(@PathVariable("id") Integer id) {
+		return chickenService.findById(id);
 	}
 }
 

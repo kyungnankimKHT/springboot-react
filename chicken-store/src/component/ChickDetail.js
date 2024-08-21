@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 const ChickDetail = () => {
     // {} = 특정값을 받아오는 것 [] = 변수명을 설정하는 것 
     const {id} = useParams();
+    console.log("id : " ,id);
     const [chicken, setChicken] = useState(null);
 
     useEffect( () => {
