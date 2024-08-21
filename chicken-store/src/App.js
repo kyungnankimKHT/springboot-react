@@ -19,10 +19,11 @@ const App = () => {
   return (
     <div className="app-container">
       <h1>치킨 가게 메뉴 관리</h1>
+      <button onClick={openModal}>메뉴등록하기</button>
       <ChickenList />
 
 
-      <button onClick={openModal}>메뉴등록하기</button>
+    
       <Modal isOpen={isModalOpen} onClose={closeModal}>
           <ChickenForm />
       </Modal>

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-
+import '../css/ChickenList.css';
 const ChickenList = () => {
     const [chickens, setChickens] = useState([]);
 
@@ -20,9 +20,11 @@ useEffect(() => {
             <h1>치킨 메뉴</h1>
             <ul>
             {chickens.map(chicken => (
-                <li key={chicken.id}>
-                    {chicken.chickenName}  {chicken.description}  ₩{chicken.price}원
-                   
+                <li key={chicken.id} className='chicken-item'>
+                    <div className='chicken-name'>{chicken.chickenName}</div>  
+                    <div className='chicken-description'>{chicken.description} </div>
+                    <div className='chicken-price'> ₩{chicken.price}원   </div>
+                   <button className='detail-button' >상세보기</button>
                 </li>
             ))}
             </ul>
