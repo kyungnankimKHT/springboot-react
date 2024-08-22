@@ -42,6 +42,7 @@ public class ChickenController {
 	 */
 	@PutMapping("{id}")
 	public Chicken updateChicken(@PathVariable("id") Integer id, @RequestBody Chicken chicken) {
+		System.out.println("chicken data : " + chicken);
 		return chickenService.updateChicken(id, chicken);
 	}
 }

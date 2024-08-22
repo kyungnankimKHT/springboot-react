@@ -32,11 +32,16 @@ public class ChickenService {
 	}
 	// findById를 작성해줄 때는 아이디를 찾지 못할 예외사항을 필수로 작성해줘야함
 	//  .orElseThrow() 예외사항 작성
-	
+	// 
 	// 치킨 메뉴 수정하기    id = 수정할 컬럼 아이디 uc = 수정된 내용 저장할 치킨 객체
 	public Chicken updateChicken(Integer id, Chicken uc) {
 		Chicken chicken = chickenRepository.findById(id)
 						.orElseThrow(() -> new RuntimeException("치킨을 찾을 수 없습니다."));
+		// 치킨 객체에 수정된 치킨 이름을 가져와서 넣어주기
+		chicken.setChickenName(uc.getChickenName());
+		chicken.setDescription(uc.getDescription());
+		chicken.setPrice(uc.getPrice());
+		return chickenRepository.save(chicken);
 	}
 }
 

@@ -51,23 +51,31 @@ const ChickDetail = () => {
             setIsEditing(false);
 
         })
+        .catch(error => {
+            console.error("수정하는데 문제가 발생했습니다.",error);
+        })
     }
 
     const handle수정하기 = () => {
         setIsEditing(true);
     }
 
-
+    const handle돌아가기 = () => {
+        setIsEditing(false);
+    }
     return (
         <div className="chicken-detail-container">
 
             {/*   수정하기버튼을누르면 ? (수정하는 기능 나오기) : (안누르면 작성된 내용 보여주기) */}
             { isEditing ? (
                 <div>
-                    <input type="text" name="chickenName" value={editData.chickenName}/>
+                    <input type="text" name="chickenName" value={editData.chickenName}
+                    onChange={(e) => setEditData({...editData, chickenName:e.target.value})}
+                    />
                     <textarea name="description" value={editData.description}/>
                     <input type="number" name="price" value={editData.price}/>
-                    <button>수정완료</button>
+                    <button onClick={handle수정한내용저장}>수정완료</button>
+                    <button onClick={handle돌아가기}>돌아가기</button>
                 </div>
         
                 ) : (
