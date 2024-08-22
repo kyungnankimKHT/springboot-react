@@ -3,6 +3,7 @@ package com.kh.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,6 +45,11 @@ public class ChickenController {
 	public Chicken updateChicken(@PathVariable("id") Integer id, @RequestBody Chicken chicken) {
 		System.out.println("chicken data : " + chicken);
 		return chickenService.updateChicken(id, chicken);
+	}
+	
+	@DeleteMapping("{id}")
+	public void deleteChicken(@PathVariable("id") Integer id) {
+		chickenService.deleteChicken(id);
 	}
 }
 

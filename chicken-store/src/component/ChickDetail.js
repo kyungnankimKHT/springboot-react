@@ -1,10 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import '../css/ChickDetail.css';
 // axios useEffect 활용해서 데이터 불러오기
 
 const ChickDetail = () => {
+    const navigate = useNavigate(); //페이지를 이동하기 위한 navigate 함수
+    // navigate = 기능작성에서 이동할 때 주로 사용   const 기능작성 () => {} / useEffect 안에 작성
+    // 이동하는 동작이 소비자들 눈에 직접적으로 보이지 않음 개발자가 암묵적으로 이동
+    // Link     = 태그에서 직접적으로 주소 이동을 작성해줄 때 사용
+
     // {} = 특정값을 받아오는 것 [] = 변수명을 설정하는 것 
     const {id} = useParams();
     console.log("id : " ,id);
@@ -63,6 +68,17 @@ const ChickDetail = () => {
     const handle돌아가기 = () => {
         setIsEditing(false);
     }
+
+    const handle삭제하기 = () => {
+        axios.delete(`http://localhost:9090/api/chicken/${id}`)
+        .then(() => {
+            alert("삭제되었습니다.");
+            navigate("/");//삭제하고 메인으로 이동하기
+        })
+        .catch(errer => {
+            console.log("삭제하는데 문제가 발생했습니다.");
+        })
+    }
     return (
         <div className="chicken-detail-container">
 
@@ -88,6 +104,7 @@ const ChickDetail = () => {
                         <p>{chicken.description}</p>
                         <p>{chicken.price}원</p>
                         <button onClick={handle수정하기}>수정하기</button>
+                        <button onClick={handle삭제하기}>삭제하기</button>
                     </div>
                 )
             }

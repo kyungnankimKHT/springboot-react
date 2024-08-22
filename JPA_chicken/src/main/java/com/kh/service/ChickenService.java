@@ -43,6 +43,14 @@ public class ChickenService {
 		chicken.setPrice(uc.getPrice());
 		return chickenRepository.save(chicken);
 	}
+	
+	// 치킨 메뉴 삭제하기
+	public void deleteChicken(Integer id) {
+		Chicken c = chickenRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("일치하는 정보를 찾을 수 없습니다."));
+		chickenRepository.delete(c);
+	}
+	
 }
 
 

@@ -66,13 +66,16 @@
                     유동적으로 박스크기 설정
     */
     box-sizing: border-box;
+    transition: transform 0.5s ease;
 }
 
-/*
+/* transform 효과 Y(90) 주기 0.5s */
+.chicken-detail-container input:hover,
+.chicken-detail-container textarea:hover {
+  /*  transform: rotateY(90deg);*/
 
-transform 효과 Y(90) 주기
-*/
-
+  transform:  translateY(80px);
+}
 
 .chicken-detail-container button {
     padding: 10px 20px;
