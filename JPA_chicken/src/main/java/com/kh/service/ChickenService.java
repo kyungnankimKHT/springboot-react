@@ -30,6 +30,14 @@ public class ChickenService {
 		return chickenRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("일치하는 정보를 찾을 수 없습니다."));
 	}
+	// findById를 작성해줄 때는 아이디를 찾지 못할 예외사항을 필수로 작성해줘야함
+	//  .orElseThrow() 예외사항 작성
+	
+	// 치킨 메뉴 수정하기    id = 수정할 컬럼 아이디 uc = 수정된 내용 저장할 치킨 객체
+	public Chicken updateChicken(Integer id, Chicken uc) {
+		Chicken chicken = chickenRepository.findById(id)
+						.orElseThrow(() -> new RuntimeException("치킨을 찾을 수 없습니다."));
+	}
 }
 
 
