@@ -72,8 +72,12 @@ const ChickDetail = () => {
                     <input type="text" name="chickenName" value={editData.chickenName}
                     onChange={(e) => setEditData({...editData, chickenName:e.target.value})}
                     />
-                    <textarea name="description" value={editData.description}/>
-                    <input type="number" name="price" value={editData.price}/>
+                    <textarea name="description" value={editData.description}
+                    onChange={(e) => setEditData({...editData, description:e.target.value})}
+                    />
+                    <input type="number" name="price" value={editData.price}
+                    onChange={(e) => setEditData({...editData, price:e.target.value})}
+                    />
                     <button onClick={handle수정한내용저장}>수정완료</button>
                     <button onClick={handle돌아가기}>돌아가기</button>
                 </div>
