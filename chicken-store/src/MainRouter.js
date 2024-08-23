@@ -42,8 +42,6 @@ const MainRouter = () => {
 
 
       <button className="chicken-register-button" onClick={openModal}>메뉴등록하기</button>
-      <ChickenList />
-
       <Modal isOpen={isModalOpen} onClose={closeModal}>
           <ChickenForm />
       </Modal>
