@@ -17,7 +17,7 @@ const SearchResult = () => {
   useEffect(() => {
     if (query) {
       axios
-        .get(`http//localhost:9090/api/chicken/search?query=${query}`)
+        .get(`http://localhost:9090/api/chicken/search?query=${query}`)
         .then((response) => setChickens(response.data))
         .catch((error) =>
           console.error("문제가 발생하여 검색을 가져오지 못합니다.", error)
