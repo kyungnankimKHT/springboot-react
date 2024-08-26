@@ -19,6 +19,7 @@ const Modal = ({isOpen, onClose, children}) => {
                 <button onClick={onClose}>
                     들어가기
                 </button>
+                {children}
             </div>
 
         </div>
