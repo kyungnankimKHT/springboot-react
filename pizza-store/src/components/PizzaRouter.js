@@ -29,7 +29,7 @@ const PizzaRouter = () => {
             </div>
 
 
-            <button onClick={{openModal}}>메뉴 등록하기</button>
+            <button onClick={openModal}>메뉴 등록하기</button>
             {/* 모달을 열면 피자메뉴 설명 가격 작성 창이 나오고 닫으면 작성 창이 사라짐 */}
             <Modal isOpen={isModalOpen} onClose={closeModal}>
                 <PizzaForm />

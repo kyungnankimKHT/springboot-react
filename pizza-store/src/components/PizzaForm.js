@@ -7,7 +7,7 @@ const PizzaForm = () => {
     const [price, setPrice] = useState('');
 
     const 전달데이터 = {
-        pizzaName,
+        name :pizzaName,
         description,
         price
     }
