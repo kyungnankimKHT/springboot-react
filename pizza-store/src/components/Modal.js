@@ -1,3 +1,4 @@
+import "../css/PizzaRouter.css";
 /*
 is = 주로 true 인지 false 인지 를 나타낼 때 많이 사용
 
@@ -8,22 +9,17 @@ on = 이벤트(e, event)를 처리하기 위한 함수 이름으로 사용
 */
 
 // [] 변수 선언  {} 외부에서 가져온 값 사용
-const Modal = ({isOpen, onClose, children}) => {
-
-    if(!isOpen) { // 모달을 열기 전이라면 
-        return null; // 다시 돌려보내기를 이용해서 화면에 들어가기 버튼이 보이지 않도록 설정하는 트릭
-    }
-    return (
-        <div>
-            <div>
-                <button onClick={onClose}>
-                    들어가기
-                </button>
-                {children}
-            </div>
-
-        </div>
-    )
-}
+const Modal = ({ isOpen, onClose, children }) => {
+  if (!isOpen) {
+    // 모달을 열기 전이라면
+    return null; // 다시 돌려보내기를 이용해서 화면에 들어가기 버튼이 보이지 않도록 설정하는 트릭
+  }
+  return (
+    <div className="modal-container">
+      <button onClick={onClose}>&times;</button>
+      {children}
+    </div>
+  );
+};
 
 export default Modal;
